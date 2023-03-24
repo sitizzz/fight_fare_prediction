@@ -3,7 +3,7 @@ import pickle
 import streamlit as st
 
 #loading the saved models
-loaded_model = pickle.load(open('C:/Users/shiro/DS exercise/end to end project/flight_rf.pkl', 'rb'))
+loaded_model = pickle.load(open('flight_rf.pkl', 'rb'))
 
 #creating a function for prediction
 def flight_prediction(input_data):
