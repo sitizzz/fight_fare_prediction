@@ -2,3 +2,4 @@ numpy==1.24.2
 pickleshare
 streamlit==1.20.0
 scikit-learn==1.2.2
+st-clickable-images==0.0.3

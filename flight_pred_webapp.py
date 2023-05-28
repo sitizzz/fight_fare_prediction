@@ -1,6 +1,8 @@
 import numpy as np
 import pickle
+import base64
 import streamlit as st
+from st_clickable_images import clickable_images
 
 #loading the saved models
 loaded_model = pickle.load(open('flight_rf.pkl', 'rb'))
@@ -96,21 +98,21 @@ def main():
   
     
     Total_Stops = st.selectbox('Number of stops',
-                               [0,1,2,3])
+                               list(range(4)))
     Journey_day = st.selectbox('Date of journey',
-                               [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31])
+                               list(range(34)))
     Journey_month = st.selectbox('Month of journey',
-                                 [1,2,3,4,5,6,7,8,9,10,11,12])
+                                 list(range(13)))
     Dept_hour = st.selectbox('Depart (hour)',
-                             [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23])
+                             list(range(24)))
     Dept_min = st.selectbox('Depart (minute)',
                             [0,10,20,30,40,50])
     Arrival_hour = st.selectbox('Arrival (hour)',
-                                [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23])
+                                list(range(24)))
     Arrival_min = st.selectbox('Arrival (minute)',
                                [0,10,20,30,40,50])
     Duration_hours = st.selectbox('Duration (hour)',
-                                  [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23])
+                                  list(range(24)))
     Duration_mins = st.selectbox('Duration (minute)',
                                  [0,10,20,30,40,50])
       
@@ -139,6 +141,33 @@ def main():
     if st.button("About"):
         st.text("This machine learning model is using Random Forest Regressor with 81% accuracy.")
         
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:        
+        def get_base64_of_bin_file(bin_file):
+            with open(bin_file, 'rb') as f:
+                data = f.read()
+            return base64.b64encode(data).decode()
+        
+        def get_img_with_href(local_img_path, target_url):
+            bin_str = get_base64_of_bin_file(local_img_path)
+            html_code = f'''
+                <a href="{target_url}">
+                    <img src="data:image/jpg;base64,{bin_str}" width="160" height="125"/>
+                </a>'''
+            return html_code
+        
+        st.markdown("**Sponsored by:**")
+        jpg_html = get_img_with_href('brs_toped.jpg', 'https://www.tokopedia.com/bungarampaistore')
+        
+        st.markdown(jpg_html, unsafe_allow_html=True)
+    
+    with col3:
+        st.markdown("**Empowered by:**")       
+        jpg_html = get_img_with_href('symbol_logo_basic_color.jpg', 'https://en.apu.ac.jp/home/')
+        
+        st.markdown(jpg_html, unsafe_allow_html=True)
+            
     
 if __name__ == '__main__':
     main()
