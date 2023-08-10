@@ -63,7 +63,7 @@ def main():
     elif (Airline=='Vistara Premium economy'):
        Airline1[10] = 1
     else:
-       Airline1
+       Airline1 = Airline1
     
     Source = st.selectbox('Source', ['Chennai', 'Delhi','Kolkata','Mumbai', 'Banglore'])
     Source1 = np.linspace(0,0,4, dtype=int)
@@ -76,7 +76,7 @@ def main():
     elif (Source == 'Mumbai'):
         Source1[3] = 1
     else:
-        Source1
+        Source1 = Source1
  
 
     Destination = st.selectbox('Destination', ['Cochin','Delhi', 'Hyderabad','Kolkata','New Delhi', 'Banglore'])
@@ -92,7 +92,7 @@ def main():
     elif (Destination == 'New Delhi'):
        Destination1[4] = 1
     else:
-       Destination1
+       Destination1 = Destination1
     
     Total_Stops = st.selectbox('Number of stops', list(range(4)))
     Journey_day = st.selectbox('Date of journey', list(range(34)))
