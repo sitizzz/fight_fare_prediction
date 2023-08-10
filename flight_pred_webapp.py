@@ -2,7 +2,6 @@ import numpy as np
 import pickle
 import base64
 import streamlit as st
-from st_clickable_images import clickable_images
 
 #loading the saved models
 loaded_model = pickle.load(open('flight_rf.pkl', 'rb'))
@@ -25,9 +24,7 @@ def flight_prediction(input_data):
     input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
 
     prediction = loaded_model.predict(input_data_reshaped)
-    print(prediction)
-    # return (prediction)
-    return 'The estimated flight fare is {} rupees.'.format(int(prediction))
+    return 'The estimated flight fare is {:,} rupees.'.format(int(prediction))
 
 def main():
     
@@ -41,60 +38,63 @@ def main():
                                   'Multiple Carriers Premium Economy','SpiceJet',
                                   'Trujet',' Vistara','Vistara Premium economy',
                                     'Air Asia'])
-    if (Airline == 'Air India'):
-        Airline = [1,0,0,0,0,0,0,0,0,0,0]
-    elif (Airline == 'GoAir'):
-        Airline = [0,1,0,0,0,0,0,0,0,0,0]
-    elif (Airline=='IndiGo'):
-        Airline = [0,0,1,0,0,0,0,0,0,0,0]
-    elif (Airline=='Jet Airways'):
-        Airline = [0,0,0,1,0,0,0,0,0,0,0]
-    elif (Airline=='Jet Airways Business'):
-        Airline = [0,0,0,0,1,0,0,0,0,0,0]
-    elif (Airline=='Multiple Carriers'):
-        Airline = [0,0,0,0,0,1,0,0,0,0,0]
-    elif (Airline=='Multiple Carriers Premium Economy'):
-        Airline = [0,0,0,0,0,0,1,0,0,0,0]
-    elif (Airline=='SpiceJet'):
-        Airline = [0,0,0,0,0,0,0,1,0,0,0]
-    elif (Airline=='Trujet'):
-        Airline = [0,0,0,0,0,0,0,0,1,0,0]
-    elif (Airline=='Vistara'):
-        Airline = [0,0,0,0,0,0,0,0,0,1,0]
-    elif (Airline=='Vistara Premium economy'):
-        Airline = [0,0,0,0,0,0,0,0,0,0,1]
-    else:
-        Airline =[0,0,0,0,0,0,0,0,0,0,0]
    
+    Airline1 = np.linspace(0,0,11, dtype=int)
+    if (Airline == 'Air India'):
+       Airline1[0] = 1 #array([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    elif (Airline == 'GoAir'):
+       Airline1[1] = 1
+    elif (Airline=='IndiGo'):
+       Airline[2] = 1
+    elif (Airline=='Jet Airways'):
+       Airline1[3] = 1
+    elif (Airline=='Jet Airways Business'):
+       Airline1[4] = 1
+    elif (Airline=='Multiple Carriers'):
+       Airline1[5] = 1 
+    elif (Airline=='Multiple Carriers Premium Economy'):
+       Airline[6] = 1
+    elif (Airline=='SpiceJet'):
+       Airline1[7] = 1
+    elif (Airline=='Trujet'):
+       Airline1[8] = 1
+    elif (Airline=='Vistara'):
+       Airline1[9] = 1 
+    elif (Airline=='Vistara Premium economy'):
+       Airline1[10] = 1
+    else:
+       Airline1
     
     Source = st.selectbox('Source',
                           ['Chennai', 'Delhi','Kolkata','Mumbai', 'Banglore'])
+    Source1 = np.linspace(0,0,4, dtype=int)
     if (Source == 'Chennai'):
-        Source = [1,0,0,0]
+        Source1[0] = 1
     elif (Source == 'Delhi'):
-        Source = [0,1,0,0] 
+        Source1[1] = 1
     elif (Source == 'Kolkata'):
-        Source = [0,0,1,0]
+        Source1[2] = 1
     elif (Source == 'Mumbai'):
-        Source = [0,0,0,1]
+        Source1[3] = 1
     else:
-        Source = [0,0,0,0]
+        Source1
  
 
     Destination = st.selectbox('Destination',
                                 ['Cochin','Delhi', 'Hyderabad','Kolkata','New Delhi', 'Banglore'])
+    Destination1 = np.linspace(0,0,5, dtype=int)
     if (Destination == 'Cochin'):
-        Destination = [1,0,0,0,0]
+       Destination1[0] = 1
     elif (Destination == 'Delhi'):
-        Destination = [0,1,0,0,0] 
+       Destination1[1] = 1
     elif (Destination == 'Hyderabad'):
-        Destination = [0,0,1,0,0]
+       Destination1[2] = 1
     elif (Destination == 'Kolkata'):
-        Destination = [0,0,0,1,0]
+       Destination1[3] = 1
     elif (Destination == 'New Delhi'):
-        Destination = [0,0,0,0,1]
+       Destination1[4] = 1
     else:
-        Destination = [0,0,0,0,0]
+       Destination1
   
     
     Total_Stops = st.selectbox('Number of stops',
@@ -122,10 +122,10 @@ def main():
     
     #creating a button for prediction
     if st.button('Price Prediction'):
-        
+               
         price = flight_prediction([
-            Airline, Source, Destination,
-                                   Total_Stops, 
+            list(Airline1)+ list(Source1)+ list(Destination1),
+                                   [Total_Stops, 
                                    Journey_day,
                                    Journey_month,
                                    Dept_hour,
@@ -133,7 +133,7 @@ def main():
                                    Arrival_hour, 
                                    Arrival_min,
                                    Duration_hours, 
-                                   Duration_mins])
+                                   Duration_mins]])
         
     st.success(price)    
     
