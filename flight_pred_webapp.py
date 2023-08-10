@@ -95,46 +95,29 @@ def main():
        Destination1[4] = 1
     else:
        Destination1
-  
     
-    Total_Stops = st.selectbox('Number of stops',
-                               list(range(4)))
-    Journey_day = st.selectbox('Date of journey',
-                               list(range(34)))
-    Journey_month = st.selectbox('Month of journey',
-                                 list(range(13)))
-    Dept_hour = st.selectbox('Depart (hour)',
-                             list(range(24)))
-    Dept_min = st.selectbox('Depart (minute)',
-                            [0,10,20,30,40,50])
-    Arrival_hour = st.selectbox('Arrival (hour)',
-                                list(range(24)))
-    Arrival_min = st.selectbox('Arrival (minute)',
-                               [0,10,20,30,40,50])
-    Duration_hours = st.selectbox('Duration (hour)',
-                                  list(range(24)))
-    Duration_mins = st.selectbox('Duration (minute)',
-                                 [0,10,20,30,40,50])
+    Total_Stops = st.selectbox('Number of stops', list(range(4)))
+    Journey_day = st.selectbox('Date of journey', list(range(34)))
+    Journey_month = st.selectbox('Month of journey', list(range(13)))
+    Dept_hour = st.selectbox('Depart (hour)', list(range(24)))
+    
+    array = np.arange(0,60,10)
+    Dept_min = st.selectbox('Depart (minute)', list(array))
+    Arrival_hour = st.selectbox('Arrival (hour)', list(range(24)))
+    Arrival_min = st.selectbox('Arrival (minute)', list(array))
+    Duration_hours = st.selectbox('Duration (hour)', list(range(24)))
+    Duration_mins = st.selectbox('Duration (minute)', list(array))
       
-   
     # code for prediction
     price = ''
     
     #creating a button for prediction
     if st.button('Price Prediction'):
                
-        price = flight_prediction([
-            list(Airline1)+ list(Source1)+ list(Destination1),
-                                   [Total_Stops, 
-                                   Journey_day,
-                                   Journey_month,
-                                   Dept_hour,
-                                   Dept_min, 
-                                   Arrival_hour, 
-                                   Arrival_min,
-                                   Duration_hours, 
-                                   Duration_mins]])
-        
+        price = flight_prediction([list(Airline1)+ list(Source1)+ list(Destination1),
+                                   [Total_Stops, Journey_day, Journey_month,                                   Dept_hour,
+                                   Dept_min, Arrival_hour, Arrival_min,
+                                   Duration_hours, Duration_mins]])        
     st.success(price)    
     
     ###add about button
