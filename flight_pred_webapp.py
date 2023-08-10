@@ -29,7 +29,7 @@ def flight_prediction(input_data):
 def main():
     
     #giving a title
-    st.title('Flight Fare Prediction Web App')
+    st.title('Flight Fare Prediction - India Region')
     
     #getting the input data from the user
     Airline = st.selectbox('Airline',
@@ -65,8 +65,7 @@ def main():
     else:
        Airline1
     
-    Source = st.selectbox('Source',
-                          ['Chennai', 'Delhi','Kolkata','Mumbai', 'Banglore'])
+    Source = st.selectbox('Source', ['Chennai', 'Delhi','Kolkata','Mumbai', 'Banglore'])
     Source1 = np.linspace(0,0,4, dtype=int)
     if (Source == 'Chennai'):
         Source1[0] = 1
@@ -80,8 +79,7 @@ def main():
         Source1
  
 
-    Destination = st.selectbox('Destination',
-                                ['Cochin','Delhi', 'Hyderabad','Kolkata','New Delhi', 'Banglore'])
+    Destination = st.selectbox('Destination', ['Cochin','Delhi', 'Hyderabad','Kolkata','New Delhi', 'Banglore'])
     Destination1 = np.linspace(0,0,5, dtype=int)
     if (Destination == 'Cochin'):
        Destination1[0] = 1
@@ -114,10 +112,10 @@ def main():
     #creating a button for prediction
     if st.button('Price Prediction'):
                
-        price = flight_prediction([list(Airline1)+ list(Source1)+ list(Destination1),
-                                   [Total_Stops, Journey_day, Journey_month,                                   Dept_hour,
+        price = flight_prediction(list(Airline1) + list(Source1) + list(Destination1) +
+                                   [Total_Stops, Journey_day, Journey_month, Dept_hour,
                                    Dept_min, Arrival_hour, Arrival_min,
-                                   Duration_hours, Duration_mins]])        
+                                   Duration_hours, Duration_mins])        
     st.success(price)    
     
     ###add about button
