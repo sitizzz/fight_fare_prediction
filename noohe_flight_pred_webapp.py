@@ -26,21 +26,17 @@ def main():
     st.header('Flight Fare Prediction - Excluding Categorical Data')
     
     #getting the input data from the user 
-    Total_Stops = st.selectbox('Number of stops',
-                               list(range(4)))
-    Journey_day = st.selectbox('Date of journey',
-                               list(range(32)))
-    Journey_month = st.selectbox('Month of journey',
-                                 list(range(13)))
-    Dept_hour = st.selectbox('Depart (hour)',
-                             list(range(24)))
+    Total_Stops = st.selectbox('Choose number of transit:', list(range(4)))
+    Journey_day = st.selectbox('Choose date of journey:', list(range(1,32)))
+    Journey_month = st.selectbox('Choose month of journey:', list(range(1,13)))
+    Dept_hour = st.selectbox('Choose hour of departure:', list(range(1,24)))
       
     array = np.arange(0,60,10)
-    Dept_min = st.selectbox('Depart (minute)', list(array))
-    Arrival_hour = st.selectbox('Arrival (hour)', list(range(24)))
-    Arrival_min = st.selectbox('Arrival (minute)', list(array))
-    Duration_hours = st.selectbox('Duration (hour)', list(range(24)))
-    Duration_mins = st.selectbox('Duration (minute)', list(array))
+    Dept_min = st.selectbox('Choose minute of departure:', list(array))
+    Arrival_hour = st.selectbox('Choose hour of arrival:', list(range(1,24)))
+    Arrival_min = st.selectbox('Choose minute of arrival:', list(array))
+    Duration_hours = st.selectbox('Choose hour of duration:', list(range(1,24)))
+    Duration_mins = st.selectbox('Choose minute of duration:', list(array))
    
     # code for prediction
     price = ''

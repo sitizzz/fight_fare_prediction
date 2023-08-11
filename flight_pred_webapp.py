@@ -9,7 +9,6 @@ loaded_model = pickle.load(open('flight_rf.pkl', 'rb'))
 #creating a function for prediction
 def flight_prediction(input_data):
     #turn nested list into a single list
-    print(input_data)
     new_input_data=[]
     for element in input_data:
         if type(element)==list:
@@ -32,7 +31,7 @@ def main():
     st.title('Flight Fare Prediction - India Region')
     
     #getting the input data from the user
-    Airline = st.selectbox('Airline',
+    Airline = st.selectbox('Choose airline:',
                                 ['Air India', 'GoAir', 'IndiGo', 'Jet Airways',
                                   'Jet Airways Business','Multiple Carriers',
                                   'Multiple Carriers Premium Economy','SpiceJet',
@@ -45,7 +44,7 @@ def main():
     elif (Airline == 'GoAir'):
        Airline1[1] = 1
     elif (Airline=='IndiGo'):
-       Airline[2] = 1
+       Airline1[2] = 1
     elif (Airline=='Jet Airways'):
        Airline1[3] = 1
     elif (Airline=='Jet Airways Business'):
@@ -53,7 +52,7 @@ def main():
     elif (Airline=='Multiple Carriers'):
        Airline1[5] = 1 
     elif (Airline=='Multiple Carriers Premium Economy'):
-       Airline[6] = 1
+       Airline1[6] = 1
     elif (Airline=='SpiceJet'):
        Airline1[7] = 1
     elif (Airline=='Trujet'):
@@ -65,7 +64,7 @@ def main():
     else:
        Airline1 = Airline1
     
-    Source = st.selectbox('Source', ['Chennai', 'Delhi','Kolkata','Mumbai', 'Banglore'])
+    Source = st.selectbox('Choose departure:', ['Chennai', 'Delhi','Kolkata','Mumbai', 'Banglore'])
     Source1 = np.linspace(0,0,4, dtype=int)
     if (Source == 'Chennai'):
         Source1[0] = 1
@@ -79,7 +78,7 @@ def main():
         Source1 = Source1
  
 
-    Destination = st.selectbox('Destination', ['Cochin','Delhi', 'Hyderabad','Kolkata','New Delhi', 'Banglore'])
+    Destination = st.selectbox('Choose destination:', ['Cochin','Delhi', 'Hyderabad','Kolkata','New Delhi', 'Banglore'])
     Destination1 = np.linspace(0,0,5, dtype=int)
     if (Destination == 'Cochin'):
        Destination1[0] = 1
@@ -94,17 +93,17 @@ def main():
     else:
        Destination1 = Destination1
     
-    Total_Stops = st.selectbox('Number of stops', list(range(4)))
-    Journey_day = st.selectbox('Date of journey', list(range(32)))
-    Journey_month = st.selectbox('Month of journey', list(range(13)))
-    Dept_hour = st.selectbox('Depart (hour)', list(range(24)))
+    Total_Stops = st.selectbox('Choose number of transit:', list(range(4)))
+    Journey_day = st.selectbox('Choose date of journey:', list(range(1,32)))
+    Journey_month = st.selectbox('Choose month of journey:', list(range(1,13)))
+    Dept_hour = st.selectbox('Choose hour of departure:', list(range(1,24)))
     
     array = np.arange(0,60,10)
-    Dept_min = st.selectbox('Depart (minute)', list(array))
-    Arrival_hour = st.selectbox('Arrival (hour)', list(range(24)))
-    Arrival_min = st.selectbox('Arrival (minute)', list(array))
-    Duration_hours = st.selectbox('Duration (hour)', list(range(24)))
-    Duration_mins = st.selectbox('Duration (minute)', list(array))
+    Dept_min = st.selectbox('Choose minute of departure:', list(array))
+    Arrival_hour = st.selectbox('Choose hour of arrival:', list(range(1,24)))
+    Arrival_min = st.selectbox('Choose minute of arrival:', list(array))
+    Duration_hours = st.selectbox('Choose hour of duration:', list(range(1,24)))
+    Duration_mins = st.selectbox('Choose minute of duration:', list(array))
       
     # code for prediction
     price = ''
