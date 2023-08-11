@@ -2,7 +2,6 @@ import numpy as np
 import pickle
 import base64
 import streamlit as st
-from st_clickable_images import clickable_images
 
 #loading the saved models
 ###no OHE model
@@ -19,12 +18,12 @@ def flight_prediction(input_data):
 
     prediction = loaded_model.predict(input_data_reshaped)
 
-    return 'The estimated flight fare is {} rupees.'.format(int(prediction))
+    return 'The estimated flight fare is {:,} rupees.'.format(int(prediction))
 
 def main():
     
     #giving a title
-    st.title('Flight Fare Prediction Web App')
+    st.header('Flight Fare Prediction - Excluding Categorical Data')
     
     #getting the input data from the user 
     Total_Stops = st.selectbox('Number of stops',
@@ -35,17 +34,13 @@ def main():
                                  list(range(13)))
     Dept_hour = st.selectbox('Depart (hour)',
                              list(range(24)))
-    Dept_min = st.selectbox('Depart (minute)',
-                            [0,10,20,30,40,50])
-    Arrival_hour = st.selectbox('Arrival (hour)',
-                                list(range(24)))
-    Arrival_min = st.selectbox('Arrival (minute)',
-                               [0,10,20,30,40,50])
-    Duration_hours = st.selectbox('Duration (hour)',
-                                  list(range(24)))
-    Duration_mins = st.selectbox('Duration (minute)',
-                                 [0,10,20,30,40,50])
       
+    array = np.arange(0,60,10)
+    Dept_min = st.selectbox('Depart (minute)', list(array))
+    Arrival_hour = st.selectbox('Arrival (hour)', list(range(24)))
+    Arrival_min = st.selectbox('Arrival (minute)', list(array))
+    Duration_hours = st.selectbox('Duration (hour)', list(range(24)))
+    Duration_mins = st.selectbox('Duration (minute)', list(array))
    
     # code for prediction
     price = ''
