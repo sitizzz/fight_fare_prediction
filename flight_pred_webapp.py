@@ -95,7 +95,7 @@ def main():
        Destination1 = Destination1
     
     Total_Stops = st.selectbox('Number of stops', list(range(4)))
-    Journey_day = st.selectbox('Date of journey', list(range(34)))
+    Journey_day = st.selectbox('Date of journey', list(range(32)))
     Journey_month = st.selectbox('Month of journey', list(range(13)))
     Dept_hour = st.selectbox('Depart (hour)', list(range(24)))
     
