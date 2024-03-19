@@ -37,61 +37,28 @@ def main():
                                   'Multiple Carriers Premium Economy','SpiceJet',
                                   'Trujet',' Vistara','Vistara Premium economy',
                                     'Air Asia'])
-   
-    Airline1 = np.linspace(0,0,11, dtype=int)
-    if (Airline == 'Air India'):
-       Airline1[0] = 1 #array([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    elif (Airline == 'GoAir'):
-       Airline1[1] = 1
-    elif (Airline=='IndiGo'):
-       Airline1[2] = 1
-    elif (Airline=='Jet Airways'):
-       Airline1[3] = 1
-    elif (Airline=='Jet Airways Business'):
-       Airline1[4] = 1
-    elif (Airline=='Multiple Carriers'):
-       Airline1[5] = 1 
-    elif (Airline=='Multiple Carriers Premium Economy'):
-       Airline1[6] = 1
-    elif (Airline=='SpiceJet'):
-       Airline1[7] = 1
-    elif (Airline=='Trujet'):
-       Airline1[8] = 1
-    elif (Airline=='Vistara'):
-       Airline1[9] = 1 
-    elif (Airline=='Vistara Premium economy'):
-       Airline1[10] = 1
-    else:
-       Airline1 = Airline1
-    
+
+    Airline_dict = {'Air India':0, 'GoAir':1,'IndiGo':2, 'Jet Airways':3, 'Jet Airways Busness':4, 
+                    'Multiple Carriers':5, 'Multiple Carriers Premium Economy':6,'SpiceJet'7,'Trujet':8,
+                    'Vistara':9, 'Vistara Premium economy':10}    
+    Airline1 = np.zeros(11, dtype=int)
+    if Airline in Airline_dict:
+    Airline1[Airline_dict[Airline]]=1
+    Airline1 = list(Airline1)
+
     Source = st.selectbox('Choose departure:', ['Chennai', 'Delhi','Kolkata','Mumbai', 'Banglore'])
-    Source1 = np.linspace(0,0,4, dtype=int)
-    if (Source == 'Chennai'):
-        Source1[0] = 1
-    elif (Source == 'Delhi'):
-        Source1[1] = 1
-    elif (Source == 'Kolkata'):
-        Source1[2] = 1
-    elif (Source == 'Mumbai'):
-        Source1[3] = 1
-    else:
-        Source1 = Source1
- 
+    Source_dict = {'Chennai':0, 'Delhi':1,'Kolkata':2,'Mumbai':3, 'Banglore':4}
+    Source1 = np.zeros(5, dtype=int)
+    if Source in Source_dict:
+        Source1[Source_dict[Source]]=1
+        Source1 = list(Source1)
 
     Destination = st.selectbox('Choose destination:', ['Cochin','Delhi', 'Hyderabad','Kolkata','New Delhi', 'Banglore'])
-    Destination1 = np.linspace(0,0,5, dtype=int)
-    if (Destination == 'Cochin'):
-       Destination1[0] = 1
-    elif (Destination == 'Delhi'):
-       Destination1[1] = 1
-    elif (Destination == 'Hyderabad'):
-       Destination1[2] = 1
-    elif (Destination == 'Kolkata'):
-       Destination1[3] = 1
-    elif (Destination == 'New Delhi'):
-       Destination1[4] = 1
-    else:
-       Destination1 = Destination1
+    Destination_dict = {'Cochin':0,'Delhi':1, 'Hyderabad':2,'Kolkata':3,'New Delhi':4, 'Banglore':5}
+    Destination1 = np.zeros(6, dtype=int)
+    if Destination in Destination_dct:
+        Destination1[Destination_dict[Destination]]=1
+        Destination1 = list(Destination)
     
     Total_Stops = st.selectbox('Choose number of transit:', list(range(4)))
     Journey_day = st.selectbox('Choose date of journey:', list(range(1,32)))
