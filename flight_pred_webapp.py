@@ -39,7 +39,7 @@ def main():
                                     'Air Asia'])
 
     Airline_dict = {'Air India':0, 'GoAir':1,'IndiGo':2, 'Jet Airways':3, 'Jet Airways Busness':4, 
-                    'Multiple Carriers':5, 'Multiple Carriers Premium Economy':6,'SpiceJet'7,'Trujet':8,
+                    'Multiple Carriers':5, 'Multiple Carriers Premium Economy':6,'SpiceJet':7,'Trujet':8,
                     'Vistara':9, 'Vistara Premium economy':10}    
     Airline1 = np.zeros(11, dtype=int)
     if Airline in Airline_dict:
