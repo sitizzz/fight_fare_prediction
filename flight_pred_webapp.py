@@ -43,8 +43,8 @@ def main():
                     'Vistara':9, 'Vistara Premium economy':10}    
     Airline1 = np.zeros(11, dtype=int)
     if Airline in Airline_dict:
-    Airline1[Airline_dict[Airline]]=1
-    Airline1 = list(Airline1)
+        Airline1[Airline_dict[Airline]]=1
+        Airline1 = list(Airline1)
 
     Source = st.selectbox('Choose departure:', ['Chennai', 'Delhi','Kolkata','Mumbai', 'Banglore'])
     Source_dict = {'Chennai':0, 'Delhi':1,'Kolkata':2,'Mumbai':3, 'Banglore':4}
