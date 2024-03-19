@@ -56,7 +56,7 @@ def main():
     Destination = st.selectbox('Choose destination:', ['Cochin','Delhi', 'Hyderabad','Kolkata','New Delhi', 'Banglore'])
     Destination_dict = {'Cochin':0,'Delhi':1, 'Hyderabad':2,'Kolkata':3,'New Delhi':4, 'Banglore':5}
     Destination1 = np.zeros(6, dtype=int)
-    if Destination in Destination_dct:
+    if Destination in Destination_dict:
         Destination1[Destination_dict[Destination]]=1
         Destination1 = list(Destination)
     
